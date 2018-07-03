@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
 
   get "/" do
-    erb :"/tweets/homepage"
+    erb :'/tweets/homepage'
   end
 
   get "/tweets" do
