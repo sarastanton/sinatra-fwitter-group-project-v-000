@@ -9,10 +9,18 @@ class UsersController < ApplicationController
     @user.save
     session[:id] = @user.id
 
-    if user.save
-      redirect "/login"
+    if @user.save
+      redirect "/tweets/index"
     else
       redirect "/failure"
+    end
+  end
+
+  get "/login" do
+    if self.is_logged_in?
+      redirect "/tweets/index"
+    else
+      erb :"/users/login"
     end
   end
 
@@ -20,7 +28,7 @@ class UsersController < ApplicationController
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/success"
+      redirect "/tweets"
     else
       redirect "/failure"
     end
@@ -36,6 +44,10 @@ class UsersController < ApplicationController
 
   get "/logout" do
     session.clear
+  end
+
+  get "/users/:id" do
+    erb :"users/show"
   end
 
 end
