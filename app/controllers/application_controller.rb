@@ -9,4 +9,14 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
+  helpers do
+    def current_user(session)
+      User.find_by(id: session[:user_id])
+    end
+
+    def logged_in?(session)
+      session[:user_id] != []
+    end
+  end
+
 end

@@ -1,24 +1,28 @@
 class UsersController < ApplicationController
 
   get "/signup" do
-    erb :"/users/signup"
+    if logged_in?(session)
+      redirect "/"
+    else
+      erb :"/users/signup"
+    end
   end
 
   post "/signup" do
-    @user = User.new(username: params[:username], password: params[:password])
+    @user = User.new(username: params[:username], email: params[:email], password: params[:password])
     @user.save
-    session[:id] = @user.id
 
     if @user.save
-      redirect "/tweets/index"
+      session[:id] = @user.id
+      redirect "/tweets"
     else
-      redirect "/failure"
+      redirect "/"
     end
   end
 
   get "/login" do
-    if self.is_logged_in?
-      redirect "/tweets/index"
+    if logged_in?(session)
+      redirect "/"
     else
       erb :"/users/login"
     end
@@ -30,24 +34,25 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect "/tweets"
     else
-      redirect "/failure"
+      redirect "/"
     end
   end
 
-  get "/success" do
-    erb :success
-  end
-
-  get "/failure" do
-    erb :failure
-  end
+  # get "/success" do
+  #   erb :success
+  # end
+  #
+  # get "/failure" do
+  #   erb :failure
+  # end
 
   get "/logout" do
     session.clear
+    redirect "/"
   end
 
-  get "/users/:id" do
-    erb :"users/show"
-  end
+  # get "/users/:id" do
+  #   erb :"users/show"
+  # end
 
 end
