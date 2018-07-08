@@ -1,3 +1,7 @@
-Coming Soon:
+<h3> Tweets by <%= @user.username %>: </h3>
 
-Index of all tweets
+<ol>
+<% @user.tweets.each do |tweet| %>
+    <li> <p> <%= tweet.content %> </p> </li>
+<% end %>
+</ol>

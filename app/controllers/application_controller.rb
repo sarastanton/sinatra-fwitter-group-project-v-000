@@ -11,7 +11,7 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def current_user
-      User.find_by(id: session[:user_id])
+      User.find_by(id: session[:id])
     end
 
     def logged_in?
@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
         @login_status = "You are NOT logged in"
       end
     end
-    
+
   end
 
 end

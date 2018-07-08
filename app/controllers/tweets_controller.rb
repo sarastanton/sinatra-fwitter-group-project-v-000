@@ -8,6 +8,7 @@ class TweetsController < ApplicationController
 
   get "/tweets" do
     login_status_display
+    @user = current_user
     erb :"/tweets/tweets"
   end
 
@@ -16,13 +17,16 @@ class TweetsController < ApplicationController
     if logged_in?
       erb :"/tweets/create_tweet"
     else
-    end
       redirect "/login"
+    end
   end
 
   post "/tweets" do
     login_status_display
-    @tweet = Tweet.create(content: params[:content], user_id: params[:user_id])
+    @tweet = Tweet.create(content: params[:content])
+    @tweet.user_id = current_user.id
+    @tweet.save
+    binding.pry
     redirect "/tweets/#{@tweet.id}"
   end
 
