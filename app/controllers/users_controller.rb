@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   get "/signup" do
+    login_status_display
     if logged_in?
       redirect "/"
     else
@@ -9,6 +10,7 @@ class UsersController < ApplicationController
   end
 
   post "/signup" do
+    login_status_display
     @user = User.new(username: params[:username], email: params[:email], password: params[:password])
     @user.save
 
@@ -21,6 +23,7 @@ class UsersController < ApplicationController
   end
 
   get "/login" do
+    login_status_display
     if logged_in?
       redirect "/"
     else
@@ -29,6 +32,7 @@ class UsersController < ApplicationController
   end
 
   post "/login" do
+    login_status_display
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
@@ -47,6 +51,7 @@ class UsersController < ApplicationController
   # end
 
   get "/logout" do
+    login_status_display
     session.clear
     # binding.pry
     redirect "/"

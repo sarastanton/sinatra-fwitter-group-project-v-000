@@ -3,16 +3,19 @@
   <head>
     <title>Fwitter</title>
     <style>
-      p {position: absolute; top: 8px; right: 16px}
+      .login_status {position: absolute; top: 8px; right: 16px}
     </style>
   </head>
   <body>
 
     <div class="container">
       <h1>Welcome to Fwitter!</h1>
-      <p> <%= @login_status %> </p>
       <!-- <h2>This is located in layout.erb!</h2>
       <h2>Don't forget to <strong>yield</strong> your views!</h2> -->
+    </div>
+
+    <div class="login_status">
+      <p> <%= @login_status %> </p>
     </div>
 
     <%= yield %>
