@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   get "/signup" do
-    if logged_in?(session)
+    if logged_in?
       redirect "/"
     else
       erb :"/users/signup"
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   get "/login" do
-    if logged_in?(session)
+    if logged_in?
       redirect "/"
     else
       erb :"/users/login"
@@ -48,6 +48,7 @@ class UsersController < ApplicationController
 
   get "/logout" do
     session.clear
+    # binding.pry
     redirect "/"
   end
 
