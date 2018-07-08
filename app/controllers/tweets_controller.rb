@@ -32,7 +32,8 @@ class TweetsController < ApplicationController
 
   get "/tweets/:id" do
     login_status_display
-    @tweet = Tweet.find_by(params[:id])
+    @tweet = Tweet.find_by(id: params[:id])
+    binding.pry
     erb :"/tweets/show_tweet"
   end
 
