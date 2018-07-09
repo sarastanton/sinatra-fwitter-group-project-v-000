@@ -1,9 +1,10 @@
-Coming Soon:
+Edit tweet:
 
-Edit a Tweet
+<form action="/tweets/<%= @tweet.id %>" method="POST">
 
-(note: don't forget to add patch line to form)
+  <input id="hidden" type="hidden" name="_method" value="patch">
 
-POST request to /tweets/:id
+  <input type="text" id=":content" name="content" placeholder="Enter revised tweet here">
 
-<input id="hidden" type="hidden" name="_method" value="patch">
+  <input type="submit" value="submit">
+</form>

@@ -1,7 +1,7 @@
-<h3> Tweets by <%= @user.username %>: </h3>
+<h3> All Tweets </h3>
 
 <ol>
-<% @user.tweets.each do |tweet| %>
-    <li> <p> <%= tweet.content %> </p> </li>
+<% Tweet.all.each do |tweet| %>
+    <li> <p> <a href="/tweets/<%= tweet.id %>"> <%= tweet.content %> </a>(posted by <%= tweet.user.username %>)</p> </li>
 <% end %>
 </ol>

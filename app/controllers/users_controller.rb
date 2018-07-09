@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   get "/login" do
     login_status_display
     if logged_in?
-      redirect "/"
+      redirect "/tweets"
     else
       erb :"/users/login"
     end
@@ -37,8 +37,6 @@ class UsersController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect "/tweets"
-    else
-      redirect "/"
     end
   end
 
