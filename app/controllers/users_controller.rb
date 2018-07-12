@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   get "/users/:id" do
-    @tweet = Tweet.all.find_by(user: :id)
+    @tweet = Tweet.all.find_by(user: params[:id])
     erb :"/users/show"
   end
 
