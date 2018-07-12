@@ -2,7 +2,7 @@ module Slugifiable
 
   module ClassMethods
     def find_by_slug(slug)
-      self.all.find{|name| name.slug == slug}
+      self.all.find{|name| username.slug == slug}
     end
   end
 
