@@ -57,5 +57,6 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     erb :"/users/show"
   end
+end
 
 end
