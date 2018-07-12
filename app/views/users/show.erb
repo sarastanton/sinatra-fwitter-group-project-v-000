@@ -1,10 +1,9 @@
-<% @tweets.each|tweet| %>
+<% @tweets.each |tweet| %>
 
   <ol>
     <% if tweet.user == @user %>
-    <li> <%= tweet.content %> </li>
-  <% end %>
-
+      <li> <%= tweet.content %> </li>
+    <% end %>
   </ol>
 
 <% end %>
