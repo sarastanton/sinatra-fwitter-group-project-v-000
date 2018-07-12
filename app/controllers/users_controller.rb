@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 
   get "/users/:id" do
     @tweet = Tweet.all.find_by(user: current_user)
-    erb :"/users/"
+    erb :"/users/show"
   end
 
 end
