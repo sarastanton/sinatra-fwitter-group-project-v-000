@@ -49,6 +49,7 @@ class UsersController < ApplicationController
 
 
   get "/users/:id" do
+    binding.pry
     @tweets = Tweet.all
     @user = User.find_by(id: params[:id])
     erb :"/users/show"
