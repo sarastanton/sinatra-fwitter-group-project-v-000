@@ -1,4 +1,4 @@
-<% @tweets.all.do |tweet| %>
+<% @tweets.each|tweet| %>
 
   <ol>
     <% if tweet.user == @user %>
@@ -6,6 +6,5 @@
   <% end %>
 
   </ol>
-
 
 <% end %>
