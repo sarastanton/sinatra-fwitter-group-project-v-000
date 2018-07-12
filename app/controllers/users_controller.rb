@@ -50,7 +50,7 @@ class UsersController < ApplicationController
 
   get "/users/:slug" do
     @tweets = Tweet.all
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by_slug(params[:slug])
     erb :"/users/show"
   end
 
