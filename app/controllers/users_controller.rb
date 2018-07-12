@@ -47,8 +47,11 @@ class UsersController < ApplicationController
     redirect "/login"
   end
 
-  get "/users/:id" do
 
+  get "/users/:slug" do
+    @tweets = Tweet.all
+    @user = User.find_by_slug(params[:slug])
+    erb :"/users/show"
   end
 
 end
