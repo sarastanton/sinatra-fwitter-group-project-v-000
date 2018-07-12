@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  include Slugifiable::InstanceMethods
-  extend Slugifiable::ClassMethods
 
   get "/signup" do
     login_status_display
