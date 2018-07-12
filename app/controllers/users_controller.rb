@@ -41,19 +41,14 @@ class UsersController < ApplicationController
     end
   end
 
-  # get "/success" do
-  #   erb :success
-  # end
-  #
-  # get "/failure" do
-  #   erb :failure
-  # end
-
   get "/logout" do
     login_status_display
     session.clear
-    # binding.pry
     redirect "/login"
+  end
+
+  get "/users/:id" do
+
   end
 
 end

@@ -26,9 +26,13 @@ class TweetsController < ApplicationController
   post "/tweets" do
     login_status_display
     @tweet = Tweet.create(content: params[:content])
-    @tweet.user_id = current_user.id
-    @tweet.save
-    redirect "/tweets/#{@tweet.id}"
+    if @tweet.content != ""
+      @tweet.user_id = current_user.id
+      @tweet.save
+      redirect "/tweets/#{@tweet.id}"
+    else
+      redirect "/tweets/new"
+    end
   end
 
   get "/tweets/:id" do
@@ -57,8 +61,12 @@ class TweetsController < ApplicationController
     login_status_display
     @tweet = Tweet.find_by(id: params[:id])
     @tweet.content = params[:content]
-    @tweet.save
-    redirect "/tweets/#{@tweet.id}"
+    if @tweet.content != ""
+      @tweet.save
+      redirect "/tweets/#{@tweet.id}"
+    else
+      redirect "/tweets/#{@tweet.id}/edit"
+    end
   end
 
   delete "/tweets/:id/delete" do
