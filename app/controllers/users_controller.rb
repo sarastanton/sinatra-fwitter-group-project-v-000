@@ -47,10 +47,6 @@ class UsersController < ApplicationController
     redirect "/login"
   end
 
-  # get "/users" do
-  #   @users = User.all
-  #   erb :"/users/show"
-  # end
 
   get "/users/:id" do
     @tweets = Tweet.all
