@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   get "/users/:id" do
-    
+    @tweet = Tweet.all.find_by(user: current_user)
   end
 
 end
