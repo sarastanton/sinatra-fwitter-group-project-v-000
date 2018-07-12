@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   get "/users/:id" do
-
+    
   end
 
 end
