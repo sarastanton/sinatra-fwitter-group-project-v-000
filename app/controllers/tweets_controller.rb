@@ -56,7 +56,6 @@ class TweetsController < ApplicationController
   patch "/tweets/:id" do
     login_status_display
     @tweet = Tweet.find_by(id: params[:id])
-    # binding.pry
     @tweet.content = params[:content]
     @tweet.save
     redirect "/tweets/#{@tweet.id}"
@@ -65,11 +64,10 @@ class TweetsController < ApplicationController
   delete "/tweets/:id/delete" do
     login_status_display
     @tweet = Tweet.find_by(id: params[:id])
-    binding.pry
     if logged_in? && @tweet.user == current_user
       @tweet.destroy
       redirect "/tweets"
-    elsif logged_in && @tweet.user != current_user
+    elsif logged_in? && @tweet.user != current_user
       redirect "/tweets"
     else
       redirect "/login"

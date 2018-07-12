@@ -15,7 +15,11 @@
     </div>
 
     <div class="login_status">
-      <p> <%= @login_status %> </p>
+      <p> <%= @login_status %> ||
+      <% if logged_in? %>
+        <a href="/logout">Log out</a>
+      <% end %>
+    </p>
     </div>
 
     <%= yield %>

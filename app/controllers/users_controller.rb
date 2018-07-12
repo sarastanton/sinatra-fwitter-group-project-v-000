@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   get "/signup" do
     login_status_display
     if logged_in?
-      redirect "/"
+      redirect "/tweets"
     else
       erb :"/users/signup"
     end
@@ -13,12 +13,11 @@ class UsersController < ApplicationController
     login_status_display
     @user = User.new(username: params[:username], email: params[:email], password: params[:password])
     @user.save
-
     if @user.save
-      session[:id] = @user.id
+      session[:user_id] = @user.id
       redirect "/tweets"
     else
-      redirect "/"
+      redirect "/signup"
     end
   end
 
@@ -37,6 +36,8 @@ class UsersController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect "/tweets"
+    else
+      redirect "/login"
     end
   end
 
@@ -52,11 +53,7 @@ class UsersController < ApplicationController
     login_status_display
     session.clear
     # binding.pry
-    redirect "/"
+    redirect "/login"
   end
-
-  # get "/users/:id" do
-  #   erb :"users/show"
-  # end
 
 end

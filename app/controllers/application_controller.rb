@@ -11,17 +11,17 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def current_user
-      User.find_by(id: session[:id])
+      User.find_by(id: session[:user_id])
     end
 
     def logged_in?
-      session[:id] != nil
+      session[:user_id] != nil
     end
 
     def login_status_display
       if logged_in?
-        username = User.find_by(id: session[:id]).username
-        @login_status = "You are logged in as #{username}" 
+        username = User.find_by(id: session[:user_id]).username
+        @login_status = "You are logged in as #{username}"
       else
         @login_status = "You are NOT logged in"
       end
