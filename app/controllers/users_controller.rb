@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
 
-  get "/users/:id" do
+  get "/users/:slug" do
     @tweets = Tweet.all
     @user = User.find_by(id: params[:id])
     erb :"/users/show"
